@@ -61,11 +61,11 @@ def tambah_keranjang():
         return
 
     keranjang[pilih] = keranjang.get(pilih, 0) + jumlah
-    print("Barang berhasil masuk keranjang.\n")
+    print("Barang berhasil masuk keranjang\n")
 
 def lihat_keranjang():
     if not keranjang:
-        print("\nKeranjang kosong.\n")
+        print("\nKeranjang kosong\n")
         return
 
     print("\nKERANJANG ANDA")
@@ -150,12 +150,12 @@ def hapus_keranjang():
 
     if aksi == 1:
         keranjang.pop(pid)
-        print("Produk berhasil dihapus seluruhnya.\n")
+        print("Produk berhasil dihapus seluruhnya\n")
         return
 
     elif aksi == 2:
         while True:
-            kurang = input("Kurangi jumlah berapa: ").strip()
+            kurang = input("Mengurangi jumlah: ").strip()
             if kurang.isdigit():
                 kurang = int(kurang)
                 break
@@ -172,7 +172,7 @@ def hapus_keranjang():
 
         if kurang == jumlah_sekarang:
             keranjang.pop(pid)
-            print("Produk dihapus seluruhnya.")
+            print("Produk dihapus seluruhnya")
         else:
             keranjang[pid] = jumlah_sekarang - kurang
             print(f"Jumlah sekarang menjadi: {keranjang[pid]}")
@@ -185,7 +185,7 @@ def checkout():
         return
 
     print("CHECKOUT")
-    print("Masukkan ID barang satu per satu. Ketik 0 jika selesai.\n")
+    print("Masukkan ID barang satu per satu. Ketik 0 jika selesai\n")
 
     valid_pilih = []
 
@@ -278,36 +278,41 @@ def checkout():
         print("\nPilih Bank:")
         print("1. BRI\n2. BCA\n3. Mandiri\n4. BNI")
 
-        while True:
-            bank = input("Pilih bank: ").strip()
-            if bank.isdigit():
-                bank = int(bank)
-                break
-            print("Input harus angka!")
-
         bank_list = {1: "BRI", 2: "BCA", 3: "Mandiri", 4: "BNI"}
 
-        if bank not in bank_list:
-            print("Bank tidak tersedia!")
-            return
+        while True:
+            bank = input("Pilih bank: ").strip()
+
+            if not bank.isdigit():
+                print("Input harus angka!")
+                continue
+
+            bank = int(bank)
+
+            if bank not in bank_list:
+                print("Bank tidak tersedia! Silakan pilih ulang")
+                continue
+
+            bank = bank_list[bank]
+            break
 
         while True:
             bayar_tf = input("Jumlah transfer: ").strip()
 
-            if bayar_tf.isdigit():
-                tf_bayar = int(bayar_tf)
+            if not bayar_tf.isdigit():
+                print("Input harus angka!")
+                continue
 
-                if tf_bayar < total_semua:
-                    print("Uang kurang! Silakan masukkan nominal yang pas")
-                    continue
+            tf_bayar = int(bayar_tf)
 
-                elif tf_bayar > total_semua:
-                    print("Uang berlebih! Nominal harus pas")
-                    continue
-
-                else:
-                    break  
-            print("Input harus angka!")
+            if tf_bayar < total_semua:
+                print("Uang kurang! Nominal harus pas")
+                continue
+            elif tf_bayar > total_semua:
+                print("Uang berlebih! Nominal harus pas")
+                continue
+            else:
+                break
 
     else:
         print("Metode tidak tersedia!")
@@ -371,4 +376,4 @@ def menu():
         else:
             print("Menu tidak tersedia!")
 
-menu()
+menu()  
