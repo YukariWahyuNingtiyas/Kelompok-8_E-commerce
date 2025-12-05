@@ -15,7 +15,7 @@ produk = {
     14: {"nama": "Binder Clip", "harga": 5000,  "stok": 30},
     15: {"nama": "Isi Staples", "harga": 4000,  "stok": 28},
     16: {"nama": "Stapler Mini","harga": 15000, "stok": 10},
-    17: {"nama": "Kertas HVS A4","harga":35000, "stok": 20} ,
+    17: {"nama": "Kertas HVS A4","harga":35000, "stok": 20},
     18: {"nama": "Kertas Warna","harga": 12000, "stok": 14},
     19: {"nama": "Lem Kertas",  "harga": 5000,  "stok": 26}
 }
@@ -376,4 +376,4 @@ def menu():
         else:
             print("Menu tidak tersedia!")
 
-menu()  
+menu()
